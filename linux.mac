@@ -1,0 +1,42 @@
+; exit(value)
+%macro sys_exit 1
+    mov eax, 1
+    mov ebx, %1
+
+    int 80h
+%endmacro
+
+
+; read(buf, count)
+; note: uses stdout
+%macro sys_read 2
+    mov eax, 4
+    mov ebx, 1   ; fd (stdout)
+    mov ecx, %1  ; buf
+    mov edx, %2  ; count
+
+    int   80h
+%endmacro
+
+
+; write(buf, count)
+; note: uses stdout
+%macro sys_write 2
+    mov eax, 4
+    mov ebx, 1   ; fd (stdout)
+    mov ecx, %1  ; buf
+    mov edx, %2  ; count
+
+    int   80h
+%endmacro
+
+; open(filename, flags, mode)
+; note: uses stdout
+%macro sys_open 3
+    mov eax, 4
+    mov ebx, %1  ; filename
+    mov ecx, %2  ; flags
+    mov edx, %3  ; mode
+
+    int   80h
+%endmacro
